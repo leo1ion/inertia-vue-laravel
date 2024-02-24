@@ -15,7 +15,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('main/index', [
+    return Inertia::render('Main/index', [
         'name' => 'test',
     ]);
 });
