@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// require('../App/Http/Controllers/ProductsController.php');
+use App\Http\Controllers\ProductsController;
 use Inertia\Inertia;
 
 /*
@@ -14,9 +16,8 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Main/index', [
-        'name' => 'test',
-    ]);
-});
+Route::get('/', [ProductsController::class, 'addProduct'])->name('add-products');
+// Route::get('/', function() {
+//     return Inertia::render('Main/index', []);
+// })->name('add-products');
 
