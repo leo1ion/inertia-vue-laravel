@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('description');
         });
-        Schema::create('category',function (Blueprint $table) {
+        Schema::create('categories',function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
         });
