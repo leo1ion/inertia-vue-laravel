@@ -10,9 +10,6 @@
     const quantity = ref();
     const description = ref("");
     const selectedCategories = ref([]);
-    let productForm = reactive({
-        name:null
-    })
 
     // product categories
     let categories = ref([]);
@@ -36,7 +33,7 @@
             });
     }
     function createProduct(){
-        router.post
+        console.log("test");
     }
 
 </script>
@@ -57,7 +54,7 @@
                 <br>
             </div>
             <div class="row">
-                <button @click="createProduct()">Create Product</button>
+                <button @click="createProduct">Create Product</button>
                 <br>
             </div>
         </div>
@@ -74,7 +71,7 @@
                 <br>
             </div>
             <div class="row">
-                <button @click="createProduct()">Create New Category</button>
+                <button @click="createCategory">Create New Category</button>
                 <br>
             </div>
         </div>
