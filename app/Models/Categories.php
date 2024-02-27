@@ -20,6 +20,10 @@ class Categories extends Model
         'id',
     ];
 
+    public $rules = [
+        'name' => 'required|string|max:255',
+    ];
+
     public $timestamps = false;
     public function assignProduct($productId){
         // this function can be called to a category to addign products to it

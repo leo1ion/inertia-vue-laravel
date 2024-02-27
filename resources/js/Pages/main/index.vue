@@ -99,6 +99,7 @@
 
         <div class ="column">
             <div class="row">
+                <p>Categories:</p>
                 <select multiple v-model="selectedCategories">
                     <option v-for="category in categories">{{ category.name }}</option>
                 </select>

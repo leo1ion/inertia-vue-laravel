@@ -17,6 +17,12 @@ class Products extends Model
         'id',
     ];
 
+    public $rules = [
+        'name' => 'required|string|max:255',
+        'price' => 'required|numeric|min:0',
+        'quantity' => 'required|integer|min:0',
+    ];
+
     public $timestamps = false;
 
     public function getCategories()
