@@ -1,15 +1,16 @@
 <script setup>
-    import { reactive, ref } from "vue";
+    import { ref } from "vue";
     import axios from 'axios';
-    import { Link } from "@inertiajs/inertia-vue3";
-    import { router } from '@inertiajs/vue3'
+    // import { router,Link,useForm  } from '@inertiajs/vue3'
+    import { Inertia } from '@inertiajs/inertia';
+
 
     // product variables
-    const name = ref("");
-    const price = ref();
-    const quantity = ref();
-    const description = ref("");
-    const selectedCategories = ref([]);
+    let name = ref("");
+    let price = ref();
+    let quantity = ref();
+    let description = ref("");
+    let selectedCategories = ref([]);
 
     // product categories
     let categories = ref([]);
@@ -17,6 +18,8 @@
 
     // error message states
     let categoriesError = ref(false);
+    let missingFieldError = ref(false);
+    let submitError = ref(false);
 
     // api request to fetch categories
     function fetchNotes(){
@@ -33,16 +36,46 @@
             });
     }
     function createProduct(){
-        console.log("test");
+        // name, price, quantity, description, selected categories
+
+        if(!name.value || !price.value || !quantity.value){
+            missingFieldError.value = true;
+            console.error("missing fields");
+            return false;
+        }
+        var data = {
+            name:name.value,
+            price:price.value,
+            quantity:quantity.value,
+            description:description.value,
+            selectedCategories:selectedCategories.value,
+        }
+
+        Inertia.post(
+            route('save-product'), 
+            data, 
+            {
+                // Optional visit options
+                onSuccess: (data) => {
+                    return;
+                },
+                onError: (error) => {
+                    submitError.value = true;
+                    console.error(error);
+                },
+            }
+        );
+        return;
     }
 
 </script>
 
 <template>
+    <form @submit.prevent="form.post(route('save-product'))"></form>
     <div style="display:flex">
         <div class = "column">
             <div class="row">
-                <input for="name" placeholder="name">
+                <input v-model="name" placeholder="name">
                 <br>
             </div>
             <div class="row">
@@ -54,7 +87,7 @@
                 <br>
             </div>
             <div class="row">
-                <button @click="createProduct">Create Product</button>
+                <button @click="createProduct()">Create Product</button>
                 <br>
             </div>
         </div>

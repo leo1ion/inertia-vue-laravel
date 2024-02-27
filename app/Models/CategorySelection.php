@@ -17,5 +17,5 @@ class CategorySelection extends Model
         'id',
     ];
 
-    public $timestamps = true;
+    public $timestamps = false;
 }
