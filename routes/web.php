@@ -18,7 +18,4 @@ use Inertia\Inertia;
 
 Route::get('/', [ProductsController::class, 'addProduct'])->name('add-products');
 Route::post('/save-product', [ProductsController::class, 'saveProduct'])->name('save-product');
-// Route::get('/', function() {
-//     return Inertia::render('Main/index', []);
-// })->name('add-products');
 

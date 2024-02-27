@@ -18,4 +18,10 @@ class Products extends Model
     ];
 
     public $timestamps = false;
+
+    public function getCategories()
+    {
+        // get all categories related to the product
+        return $this->hasManyThrough(Categories::class, CategorySelection::class, 'product_id', 'id','id','category_id');
+    }
 }

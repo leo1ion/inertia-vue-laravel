@@ -10,6 +10,7 @@ use Log;
 class ApiController extends Controller
 {
     public function fetchCategories(){
+        // api function to send the categories
         try{
             $categories = Categories::get();
 

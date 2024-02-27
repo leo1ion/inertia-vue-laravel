@@ -22,13 +22,15 @@ class Categories extends Model
 
     public $timestamps = false;
     public function assignProduct($productId){
+        // this function can be called to a category to addign products to it
         return CategorySelection::create([
             'product_id'=> $productId,
             'category_id' => $this->id,
         ]);
     }
-    // public function getProducts()
-    // {
-    //     return $this->hasManyThrough(Products::class, CategorySelection::class, 'category_id', 'id');
-    // }
+    public function getProducts()
+    {
+        // get all products related to the category
+        return $this->hasManyThrough(Products::class, CategorySelection::class, 'category_id', 'id','id','product_id');
+    }
 }

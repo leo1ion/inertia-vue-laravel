@@ -1,7 +1,6 @@
 <script setup>
     import { ref } from "vue";
     import axios from 'axios';
-    // import { router,Link,useForm  } from '@inertiajs/vue3'
     import { Inertia } from '@inertiajs/inertia';
 
 
@@ -41,8 +40,9 @@
             });
     }
     function createProduct(){
-        // name, price, quantity, description, selected categories
+        // submit the form to save the product
 
+        // validate the data
         if((!name.value || !price.value || !quantity.value)){
             missingFieldError.value = true;
             console.error("missing fields");
@@ -110,9 +110,9 @@
             </div>
         </div>
     </div>
-    <p v-if="categoriesError">Unable to load categories</p>
-    <p v-if="missingFieldError">missing field</p>
-    <p v-if="submitError">Unable to Submit the product</p>
+    <p class="error" v-if="categoriesError">Unable to load categories</p>
+    <p class="error" v-if="missingFieldError">missing field</p>
+    <p class="error" v-if="submitError">Unable to Submit the product</p>
 </template>
 
 <style scoped>
@@ -140,5 +140,8 @@
     position:relative;
     display:flex;
     flex-direction:column;
+  }
+  .error{
+    color:red;
   }
 </style>
